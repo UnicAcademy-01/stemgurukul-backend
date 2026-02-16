@@ -53,8 +53,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/api/signup", async (req, res) => {
@@ -158,8 +156,8 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+app.get("/", (req, res) => {
+  res.send("Stemgurukul Backend Running ✅");
 });
 
 const PORT = process.env.PORT || 3000;
